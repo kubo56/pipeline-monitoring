@@ -15,7 +15,7 @@ jobs:
     - name: Set up Node.js
       uses: actions/setup-node@v4
       with:
-        node-version: '18'
+        node-version: '20'
         cache: 'npm'
     
     - name: Install dependencies
@@ -26,20 +26,9 @@ jobs:
       env:
         OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
     
-    - name: Upload artifact
-      uses: actions/upload-artifact@v4
-      with:
-        name: next-app
-        path: |
-          .next/
-          public/
-          node_modules/
-          package.json
-          package-lock.json
-    
     - name: Deploy to Azure Web App
       uses: azure/webapps-deploy@v2
       with:
-        app-name: ${{ secrets.AZURE_APPSERVICE_NAME }}
+        app-name: pipeline-monitoring-app
         publish-profile: ${{ secrets.AZURE_PUBLISH_PROFILE }}
         package: .
