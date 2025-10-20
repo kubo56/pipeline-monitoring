@@ -126,6 +126,47 @@ npm start
 - All 100 pipelines are positioned within Saudi Arabia's geographic bounds
 - The app is fully type-safe with no `any` types
 
+## Deployment
+
+### Azure Web App Deployment
+
+This project includes GitHub Actions workflow for automatic deployment to Azure.
+
+#### Setup Instructions:
+
+1. **Create Azure Web App** (if you don't have one):
+   ```bash
+   az login
+   az group create --name pipeline-monitoring-rg --location eastus
+   az appservice plan create --name pipeline-monitoring-plan --resource-group pipeline-monitoring-rg --sku B1 --is-linux
+   az webapp create --resource-group pipeline-monitoring-rg --plan pipeline-monitoring-plan --name pipeline-monitoring-app --runtime "NODE|18-lts"
+   ```
+
+2. **Get Publish Profile**:
+   ```bash
+   az webapp deployment list-publishing-profiles --resource-group pipeline-monitoring-rg --name pipeline-monitoring-app --query "[0].publishUrl" --output tsv
+   ```
+
+3. **Add GitHub Secrets**:
+   - Go to your repository: `https://github.com/kubo56/pipeline-monitoring`
+   - Settings → Secrets and variables → Actions
+   - Add these secrets:
+     - `AZURE_APPSERVICE_NAME`: Your Azure app name (e.g., `pipeline-monitoring-app`)
+     - `AZURE_PUBLISH_PROFILE`: Your publish profile (from step 2)
+     - `OPENAI_API_KEY`: Your OpenAI API key
+
+4. **Enable GitHub Actions**:
+   - Actions tab in your repository
+   - Enable workflows if needed
+
+5. **Deploy**:
+   - Push to `main` branch → GitHub Actions automatically deploys
+   - Or manually trigger from Actions tab
+
+The app will be live at: `https://pipeline-monitoring-app.azurewebsites.net`
+
 ## License
 
 Demo project for Aramco pipeline monitoring showcase.
+
+````
