@@ -5,7 +5,8 @@ import dynamic from "next/dynamic";
 import { simulatePipelines } from "@/lib/simulatePipelines";
 import { Pipeline, KPIStats } from "@/types";
 import Topbar from "@/components/Topbar";
-import RightDrawer from "@/components/RightDrawer";
+import EnhancedDrawer from "@/components/EnhancedDrawer";
+import AnalyticsDashboard from "@/components/AnalyticsDashboard";
 
 // Dynamically import Map component (client-side only due to Leaflet)
 const Map = dynamic(() => import("@/components/Map"), {
@@ -42,6 +43,9 @@ export default function Home() {
 
       {/* Map Container */}
       <div className="flex-1 relative">
+        {/* Analytics Dashboard */}
+        <AnalyticsDashboard pipelines={pipelines} threshold={threshold} />
+        
         <Map
           pipelines={pipelines}
           threshold={threshold}
@@ -49,11 +53,12 @@ export default function Home() {
         />
       </div>
 
-      {/* Right Drawer */}
+      {/* Enhanced Drawer with all advanced features */}
       {selectedPipeline && (
-        <RightDrawer
+        <EnhancedDrawer
           pipeline={selectedPipeline}
           threshold={threshold}
+          allPipelines={pipelines}
           onClose={() => setSelectedPipeline(null)}
         />
       )}

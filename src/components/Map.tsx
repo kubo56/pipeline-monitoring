@@ -170,18 +170,18 @@ export default function Map({ pipelines, threshold, onPipelineClick }: MapProps)
       </MapContainer>
 
       {/* Legend */}
-      <div className="absolute bottom-4 left-4 z-10 bg-slate-900/98 border border-slate-700/70 rounded-lg shadow-xl p-3 backdrop-blur-lg">
+      <div className="absolute bottom-4 left-4 z-10 bg-slate-950/95 border border-slate-700/70 rounded-lg shadow-xl p-3 backdrop-blur-lg">
         <div className="text-[10px] font-bold text-white mb-2 uppercase tracking-wider">
           Legend
         </div>
         <div className="flex flex-col gap-1.5">
           <div className="flex items-center gap-2">
             <div className="w-2.5 h-2.5 bg-emerald-500 rounded-full border border-white shadow-sm"></div>
-            <span className="text-[11px] text-slate-200 font-semibold">Normal</span>
+            <span className="text-[11px] text-white font-semibold">Normal</span>
           </div>
           <div className="flex items-center gap-2">
             <div className="w-3 h-3 bg-red-500 rounded-full border border-white shadow-sm"></div>
-            <span className="text-[11px] text-slate-200 font-semibold">At-Risk</span>
+            <span className="text-[11px] text-white font-semibold">At-Risk</span>
           </div>
         </div>
       </div>

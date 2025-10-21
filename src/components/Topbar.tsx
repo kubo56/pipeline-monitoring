@@ -20,7 +20,7 @@ export default function Topbar({ threshold, onThresholdChange, stats }: TopbarPr
           {/* Title */}
           <div className="flex items-center gap-4">
             {/* Aramco Logo */}
-            <div className="relative h-11 w-28 flex-shrink-0">
+            <div className="relative h-16 w-40 flex-shrink-0">
               <Image 
                 src="/Saudi-Aramco-logo.png" 
                 alt="Aramco" 
@@ -29,7 +29,7 @@ export default function Topbar({ threshold, onThresholdChange, stats }: TopbarPr
                 priority
               />
             </div>
-            <div className="h-10 w-px bg-slate-700/50"></div>
+            <div className="h-12 w-px bg-slate-700/50"></div>
             <div>
               <h1 className="text-xl sm:text-2xl font-semibold text-white tracking-tight">
                 AI Leak Watch
